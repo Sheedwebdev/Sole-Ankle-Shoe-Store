@@ -4,6 +4,9 @@ import styled from 'styled-components';
 import { COLORS, WEIGHTS } from '../../constants';
 import { formatPrice, pluralize, isNewShoe } from '../../utils';
 import Spacer from '../Spacer';
+import SaleTooltip from '../SaleTooltip';
+import NewTooltip from '../NewTooltip';
+
 
 const ShoeCard = ({
   slug,
@@ -36,8 +39,8 @@ const ShoeCard = ({
       <Wrapper>
         <ImageWrapper>
           <Image alt="" src={imageSrc} />
-          {variant === 'on-sale' && <SaleFlag>Sale</SaleFlag>}
-          {variant === 'new-release' && <NewFlag>Just Released!</NewFlag>}
+          {variant === 'on-sale' && <SaleTooltip />}
+          {variant === 'new-release' && <NewTooltip />}
         </ImageWrapper>
         <Spacer size={12} />
         <Row>
@@ -108,26 +111,5 @@ const SalePrice = styled.span`
   color: ${COLORS.primary};
 `;
 
-const Flag = styled.div`
-  position: absolute;
-  top: 12px;
-  right: -4px;
-  height: 32px;
-  padding: 0 10px;
-  font-size: ${14/16}rem;
-  line-height: 32px; /* Why does the line height have to be the same as the height???*/
-  background: red;
-  font-weight: ${WEIGHTS.bold};
-  color: ${COLORS.white};
-  border-radius: 2px;
-`;
-
-const SaleFlag = styled(Flag)`
-  background-color: ${COLORS.primary};
-`;
-
-const NewFlag = styled(Flag)`
-  background-color: ${COLORS.secondary};
-`;
 
 export default ShoeCard;
